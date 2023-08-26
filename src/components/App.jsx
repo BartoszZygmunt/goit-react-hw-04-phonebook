@@ -44,6 +44,21 @@ class App extends Component {
     this.setState({ filter });
   };
 
+  componentDidMount() {
+    const storedContacts = localStorage.getItem('contacts');
+    if (storedContacts) {
+      this.setState({ contacts: JSON.parse(storedContacts) });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // Sprawdzamy, czy stan contacts został zmieniony
+    if (prevState.contacts !== this.state.contacts) {
+      // Jeśli tak, to zapisujemy aktualny stan contacts do localStorage
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   render() {
     const { contacts, filter } = this.state;
     const visibleContacts = contacts.filter(contact =>
