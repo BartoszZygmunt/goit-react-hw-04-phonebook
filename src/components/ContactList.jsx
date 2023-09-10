@@ -26,17 +26,19 @@ const DeleteButton = styled.button`
   cursor: pointer;
 `;
 
-const ContactList = ({ contacts, onDeleteContact }) => (
-  <List>
-    {contacts.map(contact => (
-      <ListItem key={contact.id}>
-        {contact.name}: {contact.number}
-        <DeleteButton onClick={() => onDeleteContact(contact.id)}>
-          Delete
-        </DeleteButton>
-      </ListItem>
-    ))}
-  </List>
-);
+function ContactList({ contacts, onDeleteContact }) {
+  return (
+    <List>
+      {contacts.map(contact => (
+        <ListItem key={contact.id}>
+          {contact.name}: {contact.number}
+          <DeleteButton onClick={() => onDeleteContact(contact.id)}>
+            Delete
+          </DeleteButton>
+        </ListItem>
+      ))}
+    </List>
+  );
+}
 
 export default ContactList;
